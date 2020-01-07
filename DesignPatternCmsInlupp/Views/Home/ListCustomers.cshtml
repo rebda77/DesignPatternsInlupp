@@ -1,0 +1,30 @@
+﻿@model List<DesignPatternCmsInlupp.Models.Customer>
+
+
+
+@{
+    ViewBag.Title = "ListCustomers";
+}
+
+<h2>Lista med kunder</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            <b>Personnummer</b>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(c.PersonNummer, "Customer", new { c.PersonNummer })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,47 @@
+﻿@model DesignPatternCmsInlupp.Models.Customer
+
+
+
+@{
+    ViewBag.Title = "Customer";
+}
+
+<h2>Kund: @Model.PersonNummer</h2>
+
+
+<h3>Lån</h3>
+<table class="table">
+    <thead>
+        <tr>
+    <th><b>LoanNo</b></th>
+    <th><b>Utbetalningsdatum</b></th>
+    <th><b>Ränta</b></th>
+    <th><b>Belopp</b></th>
+    <th><b>Fakturor</b></th>
+    </tr>
+        </thead>
+    <tbody>
+        @foreach (var c in Model.Loans)
+        {
+            <tr>
+                <td>
+                    @c.LoanNo
+                </td>
+                <td>
+                    @c.FromWhen.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @c.InterestRate
+                </td>
+                <td>
+                    @c.Belopp
+                </td>
+                <td>
+                    Invoices: bla bla... not implemented
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

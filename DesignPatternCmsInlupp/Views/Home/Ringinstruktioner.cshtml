@@ -1,0 +1,51 @@
+﻿@model DesignPatternCmsInlupp.Models.CallInstructions
+
+<form method="post">
+
+    <h2>Låneregistrering - när kunden ringer</h2>
+
+    <p>
+        Personnummer:
+        @Html.TextBoxFor(model => model.Personnummer)
+    </p>
+
+    <p>
+        Belopp personen behöver:
+        @Html.TextBoxFor(model => model.HowMuchDoYouNeed)
+    </p>
+
+
+    <p>1. Säg åt dom "vänta medan jag går till bossen och kollar om vi kan vara extra snälla med dig" </p>
+
+    <p>
+        2. Men det gör du så tusan heller. Stör mig inte! Tryck på knappen så räknar vi fram
+        vad vi kan ge för ränta
+        <input value="Beräkna" name="Calc" type="submit" />
+    </p>
+</form>
+
+
+@if (Model.Result)
+{
+    <h1>Resultat:</h1>
+    if (Model.Customer == null)
+    {
+        <p>Kunden finns inte hos oss.</p>
+    }
+    else
+    {
+        <p>Kunden har redan @Model.Customer.Total() lånat hos oss</p>
+    }
+    <h2>Ok att låna @Model.HowMuchDoYouNeed till ränta @Model.RateWeCanOffer</h2>
+    <hr />
+    <h2>Lägga upp lånet?</h2>
+    <form method="post" action="/Home/NewLoan">
+        @Html.HiddenFor(r => r.Personnummer)
+        @Html.HiddenFor(r => r.HowMuchDoYouNeed)
+        @Html.HiddenFor(r => r.RateWeCanOffer)
+
+        <input value="LÄGG UPP NYTT LÅN" name="Calc" type="submit" />
+    </form>
+}
+
+
