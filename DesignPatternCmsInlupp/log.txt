@@ -6,3 +6,7 @@ CallReceived - 2020-01-07 13:38:SS   some more useless info...
 ListCustomersPage - 2020-01-07 13:48:SS  
 ViewCustomerPage - 2020-01-07 13:48:SS  199806135741
 ViewCustomerPage - 2020-01-07 13:49:SS  199003172727
+ListCustomersPage - 2020-01-07 13:54:SS  
+ViewCustomerPage - 2020-01-07 14:00:SS  7208031212
+ParametrarPage - 2020-01-07 14:01:SS  
+CallReceived - 2020-01-07 14:02:SS   some more useless info...

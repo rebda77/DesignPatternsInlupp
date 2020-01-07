@@ -9,6 +9,8 @@ namespace DesignPatternCmsInlupp.Services
     {
         public static decimal GetRiksbankensBaseRate()
         {
+            //Fake slow call
+            System.Threading.Thread.Sleep(5000);
             using (var c = new SweaWebService.SweaWebServicePortTypeClient())
             {
                 var r = c.getLatestInterestAndExchangeRates(SweaWebService.LanguageType.sv, new[] { "SEDP2MSTIBOR" });
