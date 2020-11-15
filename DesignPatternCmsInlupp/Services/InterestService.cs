@@ -13,7 +13,12 @@ namespace DesignPatternCmsInlupp.Services
             System.Threading.Thread.Sleep(5000);
             using (var c = new SweaWebService.SweaWebServicePortTypeClient())
             {
-                var r = c.getLatestInterestAndExchangeRates(SweaWebService.LanguageType.sv, new[] { "SEDP2MSTIBOR" });
+                //var groups = c.getInterestAndExchangeGroupNames(SweaWebService.LanguageType.sv).ToList();
+
+                //var n = c.getInterestAndExchangeNames(5, SweaWebService.LanguageType.sv).ToList();
+
+                var r = c.getLatestInterestAndExchangeRates(SweaWebService.LanguageType.sv, new[] { "SEDP3MSTIBORDELAYC" });
+                
                 return Convert.ToDecimal(r.groups[0].series[0].resultrows[0].value);
             }
         }
