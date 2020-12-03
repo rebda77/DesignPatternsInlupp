@@ -139,6 +139,7 @@
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Services\Mailer.cs" />
     <Compile Include="FinansInspektionsRapportering\LoanType.cs" />
+    <Compile Include="SweaWebService\SweaWebServicePortTypeClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\SweaWebService\configuration91.svcinfo" />

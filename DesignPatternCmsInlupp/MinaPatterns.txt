@@ -2,12 +2,12 @@
 
 Här är en beskrivning av de patterns jag använt och var:
 
-1
+1 Retry - tillagd i filen InterestService.cs
 
 
-2
+2 Repository - Ändrat i HomeController.cs, samt lagt till ICustomerRepository.
 
 
-3
+3 Singleton - Ändrat i HomeController.cs och Logger.cs.
 
 etc etc

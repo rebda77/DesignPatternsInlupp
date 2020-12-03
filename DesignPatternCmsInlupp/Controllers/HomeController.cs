@@ -214,6 +214,8 @@ namespace DesignPatternCmsInlupp.Controllers
 
         public void SetLoansForCustomer(Customer c)
         {
+          
+            
             string databas = Server.MapPath("~/loans.txt");
             foreach (var line in System.IO.File.ReadAllLines(databas))
             {
