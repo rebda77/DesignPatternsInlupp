@@ -34,6 +34,10 @@ namespace DesignPatternCmsInlupp.Controllers
             var logger = new Logger();
             logger.LogAction(Logger.Actions.ListCustomersPage, "");
 
+            ICustomerRepository repository = GetRepository();
+            model = repository.GetCustomers();
+           
+
             string databas = Server.MapPath("~/customers.txt");
             foreach (var line in System.IO.File.ReadAllLines(databas))
             {
@@ -48,6 +52,11 @@ namespace DesignPatternCmsInlupp.Controllers
 
 
             return View(model);
+        }
+
+        private ICustomerRepository GetRepository() //ny metod Repository
+        {
+            return new FileCustomerRepository();
         }
 
         [HttpGet]
@@ -73,32 +82,17 @@ namespace DesignPatternCmsInlupp.Controllers
 
         void SaveToFile(Customer c)
         {
-            string databas = Server.MapPath("~/customers.txt");
-            var allLines = System.IO.File.ReadAllLines(databas).ToList();
-            foreach (var line in allLines)
-            {
-                string[] parts = line.Split(';');
-                if (parts.Length < 1) continue;
-                if (parts[0] == c.PersonNummer)
-                    return;
-            }
-            allLines.Add(c.PersonNummer);
-            System.IO.File.WriteAllLines(databas,allLines);
+            var repository = GetRepository();
+            repository.SaveCustomer(c);
+            
         }
 
         void SaveLoanToFile(Customer c, Loan l)
         {
-            string databas = Server.MapPath("~/loans.txt");
-            var allLines = System.IO.File.ReadAllLines(databas).ToList();
-            foreach (var line in allLines)
-            {
-                string[] parts = line.Split(';');
-                if (parts.Length < 1) continue;
-                if (parts[0] == c.PersonNummer && parts[1] == l.LoanNo)
-                    return;
-            }
-            allLines.Add($"{c.PersonNummer};{l.LoanNo};{l.Belopp};{l.FromWhen.ToString("yyyy-MM-dd")};{l.InterestRate}");
-            System.IO.File.WriteAllLines(databas, allLines);
+            var repository = GetRepository();
+            repository.SaveLoan(c, l);
+
+            
         }
 
 
@@ -285,21 +279,10 @@ namespace DesignPatternCmsInlupp.Controllers
 
         public Customer FindCustomer(string personnummer)
         {
-            Customer  customer = null;
-            string databas = Server.MapPath("~/customers.txt");
-            foreach(var line in System.IO.File.ReadAllLines(databas))
-            {
-                string[] parts = line.Split(';');
-                if (parts.Length < 1) continue;
-                if (parts[0] == personnummer)
-                    if(customer == null)
-                        customer = new Customer { PersonNummer = personnummer };
-            }
-            if (customer == null) return null;
-            SetLoansForCustomer(customer);
-            SetInvoicesForCustomer(customer);
-            SetPaymentsForCustomer(customer);
-            return customer;
+            var repository = GetRepository();
+            return repository.FindCustomer(personnummer);
+
+            
         }
 
 

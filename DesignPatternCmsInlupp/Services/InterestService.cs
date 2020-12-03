@@ -16,12 +16,13 @@ namespace DesignPatternCmsInlupp.Services
                 try
                 {
                     //Fake slow call
-                    //System.Threading.Thread.Sleep(5000);
+                    System.Threading.Thread.Sleep(5000);
+                   
                     using (var c = new SweaWebService.SweaWebServicePortTypeClient())
                     {
                         //var groups = c.getInterestAndExchangeGroupNames(SweaWebService.LanguageType.sv).ToList();
 
-                        //var n = c.getInterestAndExchangeNames(5, SweaWebService.LanguageType.sv).ToList();
+                      // var n = c.getInterestAndExchangeNames(5, SweaWebService.LanguageType.sv).ToList();
 
                         var r = c.getLatestInterestAndExchangeRates(SweaWebService.LanguageType.sv, new[] { "SEDP3MSTIBORDELAYC" });
 
@@ -32,12 +33,12 @@ namespace DesignPatternCmsInlupp.Services
                 catch
                 {
                     System.Threading.Thread.Sleep(sleepWhenFailBeforeRetry);
-                    retries 5; // eller --;
-                    // test 
+                    retries --;
+                  
                 }
 
             }
-            return "ERROR";
+            return 0;
 
             
         }
