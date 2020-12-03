@@ -7,6 +7,19 @@ namespace DesignPatternCmsInlupp.Services
 {
     public class Logger
     {
+        private static Logger theInstance = null;
+
+        private Logger ()
+        {
+           
+        }
+        public static Logger GetInstance()
+        {
+            if (theInstance == null)
+                theInstance = new Logger();
+            return theInstance;
+        }
+
         public enum Actions{
             CallReceived,
             ViewCustomerPage,

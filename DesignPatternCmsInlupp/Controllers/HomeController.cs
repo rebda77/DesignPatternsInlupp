@@ -18,7 +18,8 @@ namespace DesignPatternCmsInlupp.Controllers
 
         public ActionResult Parametrar()
         {
-            var logger = new Logger();
+            var logger = Logger.GetInstance();
+            
             logger.LogAction(Logger.Actions.ParametrarPage, "");
 
             var model = new Parametrar();
@@ -31,7 +32,7 @@ namespace DesignPatternCmsInlupp.Controllers
         public ActionResult ListCustomers()
         {
             var model = new List<Customer>();
-            var logger = new Logger();
+            var logger = Logger.GetInstance();
             logger.LogAction(Logger.Actions.ListCustomersPage, "");
 
             ICustomerRepository repository = GetRepository();
@@ -62,7 +63,7 @@ namespace DesignPatternCmsInlupp.Controllers
         [HttpGet]
         public ActionResult Customer(string PersonNummer)
         {
-            var logger = new Logger();
+            var logger = Logger.GetInstance();
             logger.LogAction(Logger.Actions.ViewCustomerPage, PersonNummer);
 
             var customer = FindCustomer(PersonNummer);
@@ -74,7 +75,7 @@ namespace DesignPatternCmsInlupp.Controllers
         [HttpGet]
         public ActionResult Ringinstruktioner()
         {
-            var logger = new Logger();
+            var logger = Logger.GetInstance();
             logger.LogAction(Logger.Actions.CallReceived, " some more useless info...");
             var model = new CallInstructions();
             return View(model);
@@ -100,7 +101,7 @@ namespace DesignPatternCmsInlupp.Controllers
         [HttpPost]
         public ActionResult NewLoan(CallInstructions model)
         {
-            var logger = new Logger();
+            var logger = Logger.GetInstance();
 
             var c = FindCustomer(model.Personnummer);
             if (c == null)
